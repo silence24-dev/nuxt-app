@@ -1,0 +1,73 @@
+@font-face {
+	font-family: "TTNormsPro";
+	font-weight: 400;
+	font-style: normal;
+	src: local("TTNormsPro"), url(../fonts/TTNormsPro/TTNormsPro-Regular.woff2) format("woff2");
+}
+
+@font-face {
+	font-family: "TTNormsPro";
+	font-weight: 500;
+	font-style: normal;
+	src: local("TTNormsPro"), url(../fonts/TTNormsPro/TTNormsPro-Medium.woff2) format("woff2");
+}
+
+@font-face {
+	font-family: "TTNormsPro";
+	font-weight: 700;
+	font-style: normal;
+	src: local("TTNormsPro"), url(../fonts/TTNormsPro/TTNormsPro-Bold.woff2) format("woff2");
+}
+
+:root {
+	--primary-font: "TTNormsPro";
+}
+
+*,
+*:before,
+*:after {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+}
+ul,
+ol,
+li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+
+html,
+body,
+#app {
+	height: 100%;
+	font-family: var(--primary-font);
+	font-weight: 500;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 21px;
+	color: #000;
+}
+
+html.dark {
+	//background: #222;
+	//color: white;
+	background: #fff;
+	color: #000;
+}
+
