@@ -10,7 +10,7 @@
 		></iframe>
 		<img
 			class="play-btn"
-			src="assets/img/play-btn.svg"
+			src="@/assets/images/youtube-btn.svg"
 			alt="img"
 			:style="changeStyle"
 			@click.prevent="

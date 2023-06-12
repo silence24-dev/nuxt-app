@@ -8,7 +8,7 @@
 						<p>Получите 500 рублей за подписку на рассылку</p>
 						<el-button color="#00AC4E" size="large">Подписаться</el-button>
 						<div class="img-wrapper">
-							<img src="assets/img/banner.png" alt="" />
+							<img src="@/assets/images/banner.png" alt="" />
 						</div>
 					</div>
 				</el-carousel-item>

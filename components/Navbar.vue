@@ -25,8 +25,7 @@
 				<el-menu-item index="4-8"> Шашлык </el-menu-item>
 			</el-sub-menu>
 
-			<el-menu-item class="menu-item__desktop">
-			</el-menu-item>
+			<el-menu-item class="menu-item__desktop"> </el-menu-item>
 			<el-menu-item class="menu-item__desktop" index="/delivery"> Доставка </el-menu-item>
 			<el-menu-item class="menu-item__desktop" index="/payment"> Оплата </el-menu-item>
 			<el-menu-item class="menu-item__phone">
@@ -54,7 +53,7 @@
 <script lang="ts" setup>
 import { userLogout } from '~/composables/useAuth';
 import { useCartStore } from '~/stores/cart';
-
+import { ShoppingCart, PhoneFilled, SwitchButton, Expand, User } from '@element-plus/icons-vue';
 
 const cartStore = useCartStore();
 const showSideDrawer = ref(false);
