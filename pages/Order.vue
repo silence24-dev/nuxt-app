@@ -82,7 +82,7 @@
 								</el-form>
 							</ClientOnly>
 						</el-col>
-						<el-col :span="12" class="col-sidebar">
+						<!-- <el-col :span="12" class="col-sidebar">
 							<div class="order-sidebar">
 								<h2>Вы заказали:</h2>
 								<p class="order-item" v-for="product in cartStore.shoppingCart">
@@ -102,7 +102,7 @@
 									>
 								</div>
 							</div>
-						</el-col>
+						</el-col> -->
 					</el-row>
 				</el-tab-pane>
 				<el-tab-pane name="pickup">
@@ -149,7 +149,7 @@
 							</ClientOnly>
 						</el-col>
 						<el-col :span="12" class="col-sidebar">
-							<div class="order-sidebar">
+							<!-- <div class="order-sidebar">
 								<h2>Вы заказали:</h2>
 								<p class="order-item" v-for="product in cartStore.shoppingCart">
 									{{ product.name }}
@@ -171,7 +171,7 @@
 										>Оформить заказ</el-button
 									>
 								</div>
-							</div>
+							</div> -->
 						</el-col>
 					</el-row>
 				</el-tab-pane>
@@ -183,17 +183,15 @@
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus';
 import { ElMessage } from 'element-plus';
-import { useUser } from '~~/composables/useAuth';
+import { reactive } from 'vue';
 
 const userStore = useUserStore();
 const loading = ref(false);
 
 definePageMeta({
 	title: 'Оформление заказа',
-	middleware: ['auth'],
 });
 
-const user = await useUser();
 const cartStore = useCartStore();
 const orderStore = useOrderStore();
 const activeName = ref('delivery');
@@ -213,14 +211,14 @@ const deliveryForm = reactive<{
 	payment: string;
 	floor: number;
 }>({
-	userId: user.id,
+	userId: 0,
 	name: '',
 	phone: '+7',
 	street: '',
-	building: null,
-	entrance: null,
-	floor: null,
-	apartment: null,
+	building: 0,
+	entrance: 0,
+	floor: 0,
+	apartment: 0,
 	doorphone: false,
 	payment: '',
 	comment: '',

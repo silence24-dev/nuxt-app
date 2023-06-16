@@ -8,7 +8,6 @@ navigateTo('/admin/login?message=logout');
 
 definePageMeta({
 	layout: 'admin',
-	middleware: ['auth'],
 });
 </script>
 

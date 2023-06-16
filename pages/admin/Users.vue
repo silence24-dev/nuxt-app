@@ -60,7 +60,6 @@
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus';
 import { ElMessage } from 'element-plus';
-import { registerWithEmail } from '~~/composables/useAuth';
 
 const loading = ref(false);
 const formRef = ref<FormInstance>();
@@ -76,8 +75,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
 					email: form.email,
 					password: form.password,
 				};
-				// двойные куки
-				await registerWithEmail(form.email, form.password)
+
+				///await registerWithEmail(form.email, form.password)
 
 				ElMessage({
 					message: 'Новый пользователь добавлен.',
@@ -101,7 +100,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
 definePageMeta({
 	title: 'Пользователи',
 	layout: 'admin',
-	middleware: ['auth'],
 });
 </script>
 

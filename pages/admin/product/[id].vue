@@ -42,7 +42,6 @@
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { useProductStore } from '~~/composables/productStore';
 import { IProduct } from '~~/types/IProduct';
 
 const loading = ref(false);

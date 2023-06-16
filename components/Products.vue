@@ -1,7 +1,8 @@
 <template>
 	<section class="products">
 		<div class="container">
-			<h2 v-if="products.length > 0">Все товары</h2>
+			<!-- <h2 v-if="products.length > 0">Все товары</h2> -->
+			<h2 v-if="products">Все товары</h2>
 			<h2 v-else>Вы еще не добавили ни одного товара</h2>
 			<el-row :gutter="20">
 				<el-col :span="6" v-for="(product, index) in products">
@@ -87,15 +88,16 @@
 import { ElNotification } from 'element-plus';
 import { IProduct } from '~~/types/IProduct';
 
+const products = ref([]);
 const loading = ref(true);
 const cartStore = useCartStore();
 const productStore = useProductStore();
-const products: IProduct[] = await productStore.getAll();
+//const products: IProduct[] = await productStore.getAll();
 const dialogVisible = ref(false);
 const productInModal = ref();
 const inputValue = ref(0);
 
-const addProductToCart = (product) => {
+const addProductToCart = (product: IProduct) => {
 	ElNotification({
 		title: 'Успешно',
 		message: 'Добавлено в корзину',
@@ -118,7 +120,7 @@ watch(
 	}
 );
 
-function handleChange(inputValue, product) {
+function handleChange(inputValue: number, product: IProduct) {
 	const productInCart = cartStore.shoppingCart.find((item) => item.id === product.id);
 
 	productInCart.amount = inputValue;

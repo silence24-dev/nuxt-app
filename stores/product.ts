@@ -9,11 +9,35 @@ export const useProductStore = defineStore({
 	getters: {},
 	actions: {
 		async create(data) {
+			console.log('data :>> ', data);
 			try {
+				// const fd = new FormData();
+				// fd.append('name', data.name);
+				// fd.append('category', data.category);
+				// fd.append('description', data.description);
+				// fd.append('components', data.components);
+				// fd.append('weight', data.weight);
+				// fd.append('price', data.price);
+				// fd.append('image', data.image, data.image.name);
+
+				const formData = new FormData();
+
+				for (const name in data) {
+					formData.append(name, data[name]);
+				}
+
 				const product = await $fetch<IProduct>('/api/products/create', {
 					method: 'POST',
-					body: data,
+					body: formData,
+					// headers: {
+					// 	'Content-Type': 'multipart/form-data',
+					// },
 				});
+
+				// const product = await useFetch<IProduct>('/api/products/create', {
+				// 	method: 'POST',
+				// 	body: fd,
+				// });
 			} catch (e) {
 				console.log('ERROR :>> ', e);
 			}

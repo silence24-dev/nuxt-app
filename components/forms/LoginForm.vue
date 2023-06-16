@@ -65,7 +65,7 @@
 import type { FormInstance } from 'element-plus';
 import { ElMessage } from 'element-plus';
 import { ref } from '@vue/reactivity';
-import { loginWithEmail } from '~/composables/useAuth';
+//import { loginWithEmail } from '~/composables/useAuth';
 
 const hasError = ref(null);
 const errorMessage = ref(null);
@@ -82,7 +82,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 			loading.value = true;
 
 			try {
-				const res = await loginWithEmail(form.email, form.password);
+				//const res = await loginWithEmail(form.email, form.password);
 				if (!res) {
 					errorMessage.value = 'Invalid Credentials';
 					hasError.value = true;

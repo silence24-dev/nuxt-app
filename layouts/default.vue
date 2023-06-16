@@ -133,7 +133,6 @@ useHead({
 
 <script setup>
 import { ref } from 'vue';
-import { useChatStore } from '@/stores/chat';
 import AuthModal from '../components/modal/AuthModal.vue';
 import PolicyModal from '../components/modal/PolicyModal.vue';
 import ChatWindow from '~/components/chat/ChatWindow.vue';

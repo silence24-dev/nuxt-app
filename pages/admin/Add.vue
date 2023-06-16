@@ -32,9 +32,7 @@
 					drag
 					action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
 					:auto-upload="false"
-					ref="upload"
-					:accept="'image/*'"
-					list-type="picture"
+					ref="uploadRef"
 					name="image"
 					:on-change="handleImageChange"
 				>
@@ -86,11 +84,16 @@ import type { FormInstance, FormRules, UploadInstance } from 'element-plus';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { UploadFilled } from '@element-plus/icons-vue';
 
+definePageMeta({
+	layout: 'admin',
+	title: 'Добавление блюда',
+});
+
 const productStore = useProductStore();
 const dialogVisible = ref(false);
 const loading = ref(false);
 const route = useRoute();
-const upload = ref<UploadInstance>();
+const uploadRef = ref<UploadInstance>();
 const formRef = ref<FormInstance>();
 
 const image = ref(null);
@@ -102,12 +105,12 @@ const form = reactive<{
 	weight: number;
 	price: number;
 }>({
-	name: null,
-	category: null,
-	description: null,
-	components: null,
-	weight: null,
-	price: null,
+	name: '',
+	category: '',
+	description: '',
+	components: '',
+	weight: 0,
+	price: 0,
 });
 
 const rules = reactive<FormRules>({
@@ -191,7 +194,7 @@ const rules = reactive<FormRules>({
 	],
 });
 
-const handleImageChange = (uploadFile, uploadFiles) => {
+const handleImageChange = (uploadFile) => {
 	image.value = uploadFile.raw;
 };
 
@@ -200,7 +203,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;
 	formEl.validate(async (valid) => {
 		if (valid && image.value) {
-			const fd = new FormData();
 
 			const formData = {
 				name: form.name,
@@ -209,17 +211,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
 				description: form.description,
 				weight: form.weight,
 				price: form.price,
-				image: 'https://chocomir.com/wp-content/uploads/2019/08/svinoj-stejk-8-1024x576.jpg',
+				image: image.value,
 			};
 
-			const imgBlob = new Blob([image.value], { type: 'image/jpeg' });
-			fd.append('name', form.name);
-			fd.append('category', form.category);
-			fd.append('description', form.description);
-			fd.append('components', form.components);
-			fd.append('weight', form.weight);
-			fd.append('price', form.price);
-			fd.append('image', imgBlob, image.value.name);
+			console.log('formData :>> ', formData);
 
 			try {
 				loading.value = true;
@@ -229,14 +224,14 @@ const submitForm = (formEl: FormInstance | undefined) => {
 					type: 'warning',
 				});
 
-				await productStore.create(fd);
+				await productStore.create(formData);
 
 				ElMessage({
 					type: 'success',
 					message: 'Сохранено',
 				});
 
-				await navigateTo('/admin/menu');
+				await navigateTo('/admin/catalog');
 			} catch (error) {
 				loading.value = false;
 
@@ -249,7 +244,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 			}
 
 			image.value = null;
-			upload.value.clearFiles();
+			// upload.value.clearFiles();
 			formEl.resetFields();
 		} else {
 			ElMessage({
@@ -261,11 +256,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 	});
 };
 
-definePageMeta({
-	layout: 'admin',
-	title: 'Добавление блюда',
-	middleware: ['auth'],
-});
+
 </script>
 
 <style lang="scss"></style>

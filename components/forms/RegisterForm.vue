@@ -37,7 +37,7 @@
 import type { FormInstance } from 'element-plus';
 import { ElMessage } from 'element-plus';
 import { ref } from '@vue/reactivity';
-import { registerWithEmail } from '~/composables/useAuth';
+//import { registerWithEmail } from '~/composables/useAuth';
 
 const email = ref(null);
 const password = ref(null);
@@ -110,7 +110,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 					password: form.password,
 					//privacyPolicy: form.privacyPolicy,
 				};
-				await registerWithEmail(formData.email, formData.password);
+				//await registerWithEmail(formData.email, formData.password);
 				
 				ElMessage({
 					message: 'Вы успешно зарегистрировались',

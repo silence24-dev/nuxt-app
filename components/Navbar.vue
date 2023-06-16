@@ -51,24 +51,15 @@
 </template>
 
 <script lang="ts" setup>
-import { userLogout } from '~/composables/useAuth';
-import { useCartStore } from '~/stores/cart';
 import { ShoppingCart, PhoneFilled, SwitchButton, Expand, User } from '@element-plus/icons-vue';
 
-const cartStore = useCartStore();
-const showSideDrawer = ref(false);
-const logout = userLogout;
-const router = useRouter();
-const user = useState('user');
-const initalCheck = await useLoggedIn();
-const isLoggedIn = ref(initalCheck);
-router.afterEach(() => {
-	showSideDrawer.value = false;
-});
-async function checkIfLoggedIn() {
-	const check = await useLoggedIn();
-	isLoggedIn.value = check;
+const user = ref(true)
+
+const logout = () => {
+	console.log('USER LOGOUT')
 }
+
+const cartStore = useCartStore();
 
 onMounted(() => {
 	cartStore.cartCount = JSON.parse(localStorage.getItem('cartCount') || '0');
@@ -82,13 +73,6 @@ watch(
 	{ deep: true }
 );
 
-watch(
-	user,
-	async (value) => {
-		await checkIfLoggedIn();
-	},
-	{ deep: true }
-);
 
 const emit = defineEmits(['toggleSidebar', 'toggleAuthModal']);
 const handleSignOut = () => {

@@ -2,17 +2,14 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
 	runtimeConfig: {
-		private: {
-			JWT: process.env.JWT,
-		},
+		private: {},
 		public: {},
 	},
 	imports: {
-		dirs: ['stores', 'composables'],
+		dirs: ['stores'],
 	},
 	css: ['~/assets/scss/index.scss'],
 	app: {
-		// head
 		head: {
 			title: 'Element Plus + Nuxt 3',
 			meta: [
@@ -33,14 +30,18 @@ export default defineNuxtConfig({
 	},
 
 	// build modules
-	modules: ['@vueuse/nuxt', '@unocss/nuxt', '@pinia/nuxt', '@element-plus/nuxt', '@nuxtjs/color-mode'],
+	modules: [
+		'@vueuse/nuxt',
+		'@unocss/nuxt',
+		'@pinia/nuxt',
+		'@element-plus/nuxt',
+		'@nuxtjs/color-mode',
+	],
 
-	// vueuse
 	vueuse: {
 		ssrHandlers: true,
 	},
 
-	// colorMode
 	colorMode: {
 		classSuffix: '',
 	},
